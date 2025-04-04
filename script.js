@@ -46,7 +46,7 @@ function renderProducts() {
 // Render cart list
 function renderCart() {
   const cart = getCart();
-  cartList.innerHTML = ""; // Clear previous entries
+  cartList.innerHTML = "";
 
   cart.forEach((item) => {
     const li = document.createElement("li");
@@ -60,10 +60,10 @@ function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (!product) return;
 
-  const cart = getCart();
-  cart.push(product);
-  saveCart(cart);
-  renderCart();
+  const cart = getCart(); // get current cart
+  cart.push(product);     // add new item
+  saveCart(cart);         // save updated cart
+  renderCart();           // re-render cart
 }
 
 // Clear cart
@@ -72,7 +72,7 @@ function clearCart() {
   renderCart();
 }
 
-// Clear cart button event
+// Setup event listener for clear cart
 clearCartBtn.addEventListener("click", clearCart);
 
 // Initial render
